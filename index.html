@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock Paper Scissors Game (played in the Console)</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script type="text/javascript">
+      let playerCounter = 0;
+      let computerCounter = 0;
+
+      function computerPlay() {
+        const getCompChoice = ['rock', 'paper', 'scissors'];
+        const randomStringCount = Math.floor(Math.random()*getCompChoice.length);
+        return getCompChoice[randomStringCount];
+      }
+
+      function playRound(playerSelection) {
+
+        const computerSelection = computerPlay();
+
+        if(playerSelection == computerSelection) {
+          return 'You picked ' + playerSelection + ' and the computer picked ' + computerSelection + '. It\'s a tie!';
+        }
+        else if(playerSelection == 'rock' && computerSelection == 'paper') {
+          return 'You picked ' + playerSelection + ' and the computer picked ' + computerSelection + '. You lose!';
+        }
+        else if(playerSelection == 'rock' && computerSelection == 'scissors') {
+          return 'You picked ' + playerSelection + ' and the computer picked ' + computerSelection + '. You win!';
+        }
+        else if(playerSelection == 'scissors' && computerSelection == 'rock') {
+          return 'You picked ' + playerSelection + ' and the computer picked ' + computerSelection + '. You lose!';
+        }
+        else if(playerSelection == 'scissors' && computerSelection == 'paper') {
+          return 'You picked ' + playerSelection + ' and the computer picked ' + computerSelection + '. You win!';
+        }
+        else if(playerSelection == 'scissors' && computerSelection == 'scissors') {
+          return 'You picked ' + playerSelection + ' and the computer picked ' + computerSelection + '. It\'s a tie!';
+        }
+        else if(playerSelection == 'paper' && computerSelection == 'rock') {
+          return 'You picked ' + playerSelection + ' and the computer picked ' + computerSelection + '. You win!';
+        }
+        else if(playerSelection == 'paper' && computerSelection == 'scissors') {
+          return 'You picked ' + playerSelection + ' and the computer picked ' + computerSelection + '. You lose!';
+        }
+        else if(playerSelection == 'paper' && computerSelection == 'paper') {
+          return 'You picked ' + playerSelection + ' and the computer picked ' + computerSelection + '. It\'s a tie!';
+        }
+      }
+
+
+      function game() {
+
+        let gameResult = playRound(prompt('Choose rock, paper or scissors: ').toLowerCase());
+        let gameResultBool = gameResult.endsWith('win!');
+        let gameResultTieBool = gameResult.endsWith('tie!');
+
+        if(gameResultBool == true) {
+          playerCounter += 1;
+          console.log(gameResult + ' Your score is: ' + playerCounter + '. The computers score is: ' + computerCounter);
+        }
+        else if(gameResultBool == false && gameResultTieBool == false) {
+          computerCounter += 1;
+          console.log(gameResult + ' Your score is: ' + playerCounter + '. The computers score is: ' + computerCounter);
+        }
+        else if(gameResultTieBool = true) {
+          console.log(gameResult + ' Your score is unchanged.');
+        }
+      }
+
+      function finalScore() {
+        let finalString = '';
+
+        if(playerCounter > computerCounter){
+          finalString = 'The final score is ' + playerCounter + ' to you, and ' + computerCounter + ' to the computer. You win this game!';
+        }
+        else if(playerCounter < computerCounter){
+          finalString = 'The final score is ' + playerCounter + ' to you, and ' + computerCounter + ' to the computer. You lose this game!';
+        }
+        else{
+          finalString = 'The final score is ' + playerCounter + ' to you, and ' + computerCounter + ' to the computer. It\'s a tie!';
+        }
+
+        console.log(finalString);
+      }
+
+      console.log('Let\'s play rock, paper, scissors.')
+      game();
+      game();
+      game();
+      game();
+      game();
+
+      finalScore();
+
+    </script>
+  </body>
+</html>
